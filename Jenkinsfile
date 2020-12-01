@@ -22,7 +22,7 @@ pipeline {
 		}
 		stage('PHPunit') {
 			steps {
-                		sh './vendor/bin/phpunit tests'
+                		sh"./vendor/bin/phpunit tests --log-junit logs/unitreport.xml -c tests/phpunit.xml tests"
             		}
 		}
 	}	
@@ -30,5 +30,8 @@ pipeline {
         	success {
             		dependencyCheckPublisher pattern: 'dependency-check-report.xml'
         	}
-    }
+		always{
+            		junit testResults: 'logs/unitreport.xml'
+        	}
+    	}
 }
