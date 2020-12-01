@@ -30,8 +30,5 @@ pipeline {
         	success {
             		dependencyCheckPublisher pattern: 'dependency-check-report.xml'
         	}
-		always{
-            		junit testResults: 'logs/unitreport.xml'
-        	}
     	}
 }
