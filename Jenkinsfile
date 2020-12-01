@@ -1,5 +1,9 @@
 pipeline {
-	agent any
+	agent {
+		docker {
+			image 'composer:latest'
+		}
+	}
 	stages {
 		stage('Checkout SCM') {
 			steps {
@@ -11,6 +15,16 @@ pipeline {
                 		dependencyCheck additionalArguments: '--format HTML --format XML --suppression suppression.xml', odcInstallation: 'OWASP'
             		}
         	}
+		stage('Install') {
+			steps {
+				sh 'composer install'
+			}
+		}
+		stage('PHPunit') {
+			steps {
+                		sh './vendor/bin/phpunit tests'
+            		}
+		}
 	}	
 	post {
         	success {
