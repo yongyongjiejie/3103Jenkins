@@ -3,7 +3,7 @@ pipeline {
 	stages {
 		stage('Checkout SCM') {
 			steps {
-				git branch: 'test', credentialsId: 'aa7ce681-cf84-4bb1-a1a6-a7012789b2ba', url: 'https://github.com/yongyongjiejie/simple-java-maven-app'
+				git branch: 'master', credentialsId: 'e8492039-5ea1-40f2-9f4a-9ce7e2dc4ac1', url: 'https://github.com/yongyongjiejie/3103Jenkins.git'
 			}
 		}
  		stage('OWASP DependencyCheck') {
